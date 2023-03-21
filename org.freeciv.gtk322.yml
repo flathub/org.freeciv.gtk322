@@ -20,8 +20,8 @@ modules:
       - cd build && ../configure --prefix=/app --enable-client=gtk3.22 --disable-fcmp --disable-freeciv-manual && make -j$(nproc) && make install
     sources:
       - type: archive
-        url: "https://sourceforge.net/projects/freeciv/files/Freeciv 3.0/3.0.6/freeciv-3.0.6.tar.xz"
-        sha256: 40e701157b957a2eb3c4548e5b819d06521c2ad1d47ae926be5117c7d6ace442
+        url: "https://sourceforge.net/projects/freeciv/files/Freeciv 3.1/3.1.0-beta1/freeciv-3.1.0-beta1.tar.xz"
+        sha256: fd8872dbacc6cf0212a44c9e703a82bae71b0741a191ee318fbefd072a1ee431
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
