@@ -4,18 +4,6 @@ runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: freeciv-gtk3.22
 rename-icon: freeciv-client
-modules:
-  - name: freeciv-gtk3.22
-    buildsystem: simple
-    build-commands:
-      # On git clone, regenerate configure with autogen.sh
-      - if test -f ./.git && test -x ./autogen.sh ; then ./autogen.sh --no-configure-run ; fi
-      - mkdir build
-      - cd build && ../configure --prefix=/app --enable-client=gtk3.22 --disable-fcmp --disable-freeciv-manual && make -j$(nproc) && make install
-    sources:
-      - type: archive
-        url: "https://sourceforge.net/projects/freeciv/files/Freeciv 3.1/3.1.0-beta1/freeciv-3.1.0-beta1.tar.xz"
-        sha256: fd8872dbacc6cf0212a44c9e703a82bae71b0741a191ee318fbefd072a1ee431
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
@@ -23,3 +11,16 @@ finish-args:
   - --share=network
   - --socket=pulseaudio
   - --filesystem=~/.freeciv:create
+modules:
+  - name: freeciv-gtk3.22
+    buildsystem: autotools
+    config-opts:
+      - --enable-client=gtk3.22
+      - --disable-fcmp
+      - --disable-freeciv-manual
+    sources:
+      - type: archive
+        url: "https://sourceforge.net/projects/freeciv/files/Freeciv 3.1/3.1.0-beta2/freeciv-3.1.0-beta2.tar.xz"
+        sha256: 45fd8f8707029c84747a6c8dfa7ca7ac6a660fbe9a4e082f87cafc32e41eb51e
+      - type: patch
+        path: reldate.patch
