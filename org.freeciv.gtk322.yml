@@ -4,6 +4,13 @@ runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: freeciv-gtk3.22
 rename-icon: freeciv-client
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --share=network
+  - --socket=pulseaudio
+  - --filesystem=~/.freeciv:create
 modules:
   - name: freeciv-gtk3.22
     buildsystem: simple
@@ -14,12 +21,5 @@ modules:
       - cd build && ../configure --prefix=/app --enable-client=gtk3.22 --disable-fcmp --disable-freeciv-manual && make -j$(nproc) && make install
     sources:
       - type: archive
-        url: "https://sourceforge.net/projects/freeciv/files/Freeciv 3.0/3.0.7/freeciv-3.0.7.tar.xz"
-        sha256: f6e606f17ed03d971272883f1a4879f5c1c2c247f64b8edefa6a25c8a2a8dac4
-finish-args:
-  - --socket=wayland
-  - --socket=fallback-x11
-  - --share=ipc
-  - --share=network
-  - --socket=pulseaudio
-  - --filesystem=~/.freeciv:create
+        url: "https://sourceforge.net/projects/freeciv/files/Freeciv 3.0/3.0.8/freeciv-3.0.8.tar.xz"
+        sha256: 3b5aa32f628890be1741c3ac942cee82c79c065f8db6baff18d734a5c0e776d4
