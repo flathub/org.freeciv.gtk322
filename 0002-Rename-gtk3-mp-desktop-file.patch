@@ -1,137 +1,95 @@
-From 309d8a9fd39f92e5b7708cc7ed0b4a9e89f4a079 Mon Sep 17 00:00:00 2001
+From b964fc06e1f354db6ef098397e06388b94c48bb0 Mon Sep 17 00:00:00 2001
 From: Marko Lindqvist <cazfi74@gmail.com>
-Date: Tue, 26 Sep 2023 00:01:14 +0300
+Date: Fri, 29 Sep 2023 14:25:25 +0300
 Subject: [PATCH 2/3] Rename gtk3 mp desktop file
 
 Make it org.freeciv.gtk322.mp.desktop
 
 Signed-off-by: Marko Lindqvist <cazfi74@gmail.com>
 ---
- Makefile.am                                                 | 2 +-
- bootstrap/Makefile.am                                       | 2 +-
- ....mp.gtk3.desktop.in => org.freeciv.gtk322.mp.desktop.in} | 0
- bootstrap/org.freeciv.mp.gtk3.appdata.xml.in                | 2 +-
- configure                                                   | 6 +++---
- configure.ac                                                | 2 +-
- .../{org.freeciv.mp.gtk3.yml => org.freeciv.gtk322.mp.yml}  | 2 +-
- tools/Makefile.am                                           | 2 +-
- 8 files changed, 9 insertions(+), 9 deletions(-)
- rename bootstrap/{org.freeciv.mp.gtk3.desktop.in => org.freeciv.gtk322.mp.desktop.in} (100%)
- rename flatpak/{org.freeciv.mp.gtk3.yml => org.freeciv.gtk322.mp.yml} (94%)
+ bootstrap/Makefile.am                                         | 4 ++--
+ bootstrap/org.freeciv.gtk3.mp.metainfo.xml.in                 | 2 +-
+ ....freeciv.gtk3.mp.desktop => org.freeciv.gtk322.mp.desktop} | 0
+ flatpak/build_flatpak.sh                                      | 4 ++--
+ .../{org.freeciv.gtk3.mp.yml => org.freeciv.gtk322.mp.yml}    | 2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+ rename bootstrap/{org.freeciv.gtk3.mp.desktop => org.freeciv.gtk322.mp.desktop} (100%)
+ rename flatpak/{org.freeciv.gtk3.mp.yml => org.freeciv.gtk322.mp.yml} (94%)
 
-diff --git a/Makefile.am b/Makefile.am
-index bbb34f7f3d..df27d61923 100644
---- a/Makefile.am
-+++ b/Makefile.am
-@@ -76,7 +76,7 @@ EXTRA_DIST =	autogen.sh 			\
- 		m4/testmatic.m4			\
- 		flatpak/build_flatpak.sh	\
- 		flatpak/org.freeciv.gtk322.yml	\
--		flatpak/org.freeciv.mp.gtk3.yml	\
-+		flatpak/org.freeciv.gtk322.mp.yml	\
- 		flatpak/org.freeciv.mp.gtk4.yml	\
- 		flatpak/org.freeciv.qt.yml	\
- 		flatpak/org.freeciv.sdl2.yml	\
 diff --git a/bootstrap/Makefile.am b/bootstrap/Makefile.am
-index 85aeb4d548..31236db96c 100644
+index 1f100f2fba..5fa0b76146 100644
 --- a/bootstrap/Makefile.am
 +++ b/bootstrap/Makefile.am
 @@ -27,7 +27,7 @@ EXTRA_DIST =	freeciv.project		\
- 		org.freeciv.qt.desktop.in	\
- 		org.freeciv.server.desktop.in	\
- 		org.freeciv.mp.gtk2.desktop.in	\
--		org.freeciv.mp.gtk3.desktop.in	\
-+		org.freeciv.gtk322.mp.desktop.in	\
- 		org.freeciv.mp.gtk4.desktop.in	\
- 		org.freeciv.mp.qt.desktop.in	\
- 		org.freeciv.ruledit.desktop.in	\
-diff --git a/bootstrap/org.freeciv.mp.gtk3.desktop.in b/bootstrap/org.freeciv.gtk322.mp.desktop.in
-similarity index 100%
-rename from bootstrap/org.freeciv.mp.gtk3.desktop.in
-rename to bootstrap/org.freeciv.gtk322.mp.desktop.in
-diff --git a/bootstrap/org.freeciv.mp.gtk3.appdata.xml.in b/bootstrap/org.freeciv.mp.gtk3.appdata.xml.in
-index 7a7ad972a3..3e375ca751 100644
---- a/bootstrap/org.freeciv.mp.gtk3.appdata.xml.in
-+++ b/bootstrap/org.freeciv.mp.gtk3.appdata.xml.in
+ 		org.freeciv.sdl2.desktop	\
+ 		org.freeciv.qt.desktop \
+ 		org.freeciv.server.desktop	\
+-		org.freeciv.gtk3.mp.desktop	\
++		org.freeciv.gtk322.mp.desktop	\
+ 		org.freeciv.gtk4.mp.desktop	\
+ 		org.freeciv.qt.mp.desktop	\
+ 		org.freeciv.ruledit.desktop	\
+@@ -80,7 +80,7 @@ endif
+ 
+ if MODINST_GTK3
+ metainfofile_DATA += org.freeciv.gtk3.mp.metainfo.xml
+-desktopfile_DATA  += org.freeciv.gtk3.mp.desktop
++desktopfile_DATA  += org.freeciv.gtk322.mp.desktop
+ endif
+ 
+ if MODINST_GTK4
+diff --git a/bootstrap/org.freeciv.gtk3.mp.metainfo.xml.in b/bootstrap/org.freeciv.gtk3.mp.metainfo.xml.in
+index 3c5a87c82a..5022cc8c53 100644
+--- a/bootstrap/org.freeciv.gtk3.mp.metainfo.xml.in
++++ b/bootstrap/org.freeciv.gtk3.mp.metainfo.xml.in
 @@ -14,7 +14,7 @@
              Freeciv modpack utility can be used to automatically download and install custom rulesets, tilesets, soundsets, and maps for freeciv to use.
          </p>
      </description>
--    <launchable type="desktop-id">org.freeciv.mp.gtk3.desktop</launchable>
+-    <launchable type="desktop-id">org.freeciv.gtk3.mp.desktop</launchable>
 +    <launchable type="desktop-id">org.freeciv.gtk322.mp.desktop</launchable>
  
      <url type="homepage">https://www.freeciv.org/</url>
      <url type="bugtracker">https://osdn.net/projects/freeciv/ticket/</url>
-diff --git a/configure b/configure
-index c376cccfce..04ba698272 100755
---- a/configure
-+++ b/configure
-@@ -5674,7 +5674,7 @@ DEFAULT_FOLLOW_TAG=stable
- NETWORK_CAPSTRING_MANDATORY="+Freeciv-3.0-network"
- NETWORK_CAPSTRING_OPTIONAL="year32 plrculture32 pingfix researchclr cityculture32 rsdesc32 obsinv"
- 
--FREECIV_DISTRIBUTOR=""
-+FREECIV_DISTRIBUTOR="flathub"
- 
- if test "x$FREECIV_LABEL_FORCE" != "x" ; then
-   VERSION_LABEL=$(echo $FREECIV_LABEL_FORCE | sed "s/<base>/$VERSION_LABEL/g")
-@@ -37237,7 +37237,7 @@ if test "x$AR_FLAGS" = "xcru" ; then
-   AR_FLAGS="cr"
- fi
- 
--ac_config_files="$ac_config_files Makefile data/Makefile data/hex2t/Makefile data/hexemplio/Makefile data/amplio2/Makefile data/alio/Makefile data/buildings/Makefile data/flags/Makefile data/misc/Makefile data/cimpletoon/Makefile data/trident/Makefile data/isophex/Makefile data/isotrident/Makefile data/stdsounds/Makefile data/stdmusic/Makefile data/override/Makefile data/default/Makefile data/classic/Makefile data/multiplayer/Makefile data/sandbox/Makefile data/experimental/Makefile data/alien/Makefile data/alien/nation/Makefile data/civ2civ3/Makefile data/civ1/Makefile data/civ2/Makefile data/scenarios/Makefile data/nation/Makefile data/ruledit/Makefile data/themes/Makefile data/themes/gtk2/Makefile data/themes/gtk2/Freeciv/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Arrows/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Buttons/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Check-Radio/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Combo/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Frame-Gap/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Handles/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Lines/Makefile data/themes/gtk2/Freeciv/gtk-2.0/ListHeaders/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Menu-Menubar/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Others/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Panel/Makefile data/themes/gtk2/Freeciv/gtk-2.0/ProgressBar/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Range/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Scrollbars/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Shadows/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Spin/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Tabs/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Toolbar/Makefile data/themes/gtk3/Makefile data/themes/gtk3/Freeciv/Makefile data/themes/gtk3/Freeciv/gtk-3.0/Makefile data/themes/gtk3.22/Makefile data/themes/gtk3.22/Freeciv/Makefile data/themes/gtk3.22/Freeciv/gtk-3.0/Makefile data/themes/gui-qt/Makefile data/themes/gui-qt/icons/Makefile data/themes/gui-qt/Classic/Makefile data/themes/gui-qt/Necrophos/Makefile data/themes/gui-qt/NightStalker/Makefile data/themes/gui-qt/System/Makefile data/themes/gui-sdl2/Makefile data/themes/gui-sdl2/human/Makefile data/wonders/Makefile data/icons/Makefile utility/Makefile dependencies/Makefile dependencies/lua-5.3/Makefile dependencies/lua-5.3/src/Makefile dependencies/tolua-5.2/Makefile dependencies/tolua-5.2/src/Makefile dependencies/tolua-5.2/src/lib/Makefile dependencies/tolua-5.2/src/bin/Makefile dependencies/luasql/Makefile dependencies/luasql/src/Makefile dependencies/cvercmp/Makefile dependencies/tinycthread/Makefile common/Makefile common/aicore/Makefile common/networking/Makefile common/scriptcore/Makefile ai/Makefile ai/default/Makefile ai/classic/Makefile ai/stub/Makefile ai/threaded/Makefile ai/tex/Makefile tests/Makefile windows/Makefile client/Makefile client/agents/Makefile client/include/Makefile client/gui-sdl2/Makefile client/gui-gtk-2.0/Makefile client/gui-gtk-3.0/Makefile client/gui-gtk-3.22/Makefile client/gui-qt/Makefile client/gui-stub/Makefile client/luascript/Makefile server/Makefile server/advisors/Makefile server/generator/Makefile server/scripting/Makefile tools/Makefile tools/ruledit/Makefile tools/ruleutil/Makefile tools/shared/Makefile gen_headers/Makefile translations/Makefile translations/core/Makefile.in translations/nations/Makefile.in translations/ruledit/Makefile.in doc/Makefile doc/man/Makefile doc/man/freeciv.6 doc/man/freeciv-client.6 doc/man/freeciv-server.6 doc/man/freeciv-manual.6 doc/man/freeciv-modpack.6 doc/man/freeciv-ruledit.6 doc/man/freeciv-ruleup.6 doc/ca/Makefile doc/de/Makefile doc/fr/Makefile doc/it/Makefile doc/ja/Makefile doc/nl/Makefile doc/sv/Makefile bootstrap/Makefile lua/Makefile client/org.freeciv.gtk3.desktop:bootstrap/org.freeciv.gtk3.desktop.in client/org.freeciv.gtk2.desktop:bootstrap/org.freeciv.gtk2.desktop.in client/org.freeciv.gtk322.desktop:bootstrap/org.freeciv.gtk322.desktop.in client/org.freeciv.sdl2.desktop:bootstrap/org.freeciv.sdl2.desktop.in client/org.freeciv.qt.desktop:bootstrap/org.freeciv.qt.desktop.in server/org.freeciv.server.desktop:bootstrap/org.freeciv.server.desktop.in tools/org.freeciv.mp.gtk2.desktop:bootstrap/org.freeciv.mp.gtk2.desktop.in tools/org.freeciv.mp.gtk3.desktop:bootstrap/org.freeciv.mp.gtk3.desktop.in tools/org.freeciv.mp.gtk4.desktop:bootstrap/org.freeciv.mp.gtk4.desktop.in tools/org.freeciv.mp.qt.desktop:bootstrap/org.freeciv.mp.qt.desktop.in tools/ruledit/org.freeciv.ruledit.desktop:bootstrap/org.freeciv.ruledit.desktop.in"
-+ac_config_files="$ac_config_files Makefile data/Makefile data/hex2t/Makefile data/hexemplio/Makefile data/amplio2/Makefile data/alio/Makefile data/buildings/Makefile data/flags/Makefile data/misc/Makefile data/cimpletoon/Makefile data/trident/Makefile data/isophex/Makefile data/isotrident/Makefile data/stdsounds/Makefile data/stdmusic/Makefile data/override/Makefile data/default/Makefile data/classic/Makefile data/multiplayer/Makefile data/sandbox/Makefile data/experimental/Makefile data/alien/Makefile data/alien/nation/Makefile data/civ2civ3/Makefile data/civ1/Makefile data/civ2/Makefile data/scenarios/Makefile data/nation/Makefile data/ruledit/Makefile data/themes/Makefile data/themes/gtk2/Makefile data/themes/gtk2/Freeciv/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Arrows/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Buttons/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Check-Radio/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Combo/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Frame-Gap/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Handles/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Lines/Makefile data/themes/gtk2/Freeciv/gtk-2.0/ListHeaders/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Menu-Menubar/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Others/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Panel/Makefile data/themes/gtk2/Freeciv/gtk-2.0/ProgressBar/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Range/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Scrollbars/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Shadows/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Spin/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Tabs/Makefile data/themes/gtk2/Freeciv/gtk-2.0/Toolbar/Makefile data/themes/gtk3/Makefile data/themes/gtk3/Freeciv/Makefile data/themes/gtk3/Freeciv/gtk-3.0/Makefile data/themes/gtk3.22/Makefile data/themes/gtk3.22/Freeciv/Makefile data/themes/gtk3.22/Freeciv/gtk-3.0/Makefile data/themes/gui-qt/Makefile data/themes/gui-qt/icons/Makefile data/themes/gui-qt/Classic/Makefile data/themes/gui-qt/Necrophos/Makefile data/themes/gui-qt/NightStalker/Makefile data/themes/gui-qt/System/Makefile data/themes/gui-sdl2/Makefile data/themes/gui-sdl2/human/Makefile data/wonders/Makefile data/icons/Makefile utility/Makefile dependencies/Makefile dependencies/lua-5.3/Makefile dependencies/lua-5.3/src/Makefile dependencies/tolua-5.2/Makefile dependencies/tolua-5.2/src/Makefile dependencies/tolua-5.2/src/lib/Makefile dependencies/tolua-5.2/src/bin/Makefile dependencies/luasql/Makefile dependencies/luasql/src/Makefile dependencies/cvercmp/Makefile dependencies/tinycthread/Makefile common/Makefile common/aicore/Makefile common/networking/Makefile common/scriptcore/Makefile ai/Makefile ai/default/Makefile ai/classic/Makefile ai/stub/Makefile ai/threaded/Makefile ai/tex/Makefile tests/Makefile windows/Makefile client/Makefile client/agents/Makefile client/include/Makefile client/gui-sdl2/Makefile client/gui-gtk-2.0/Makefile client/gui-gtk-3.0/Makefile client/gui-gtk-3.22/Makefile client/gui-qt/Makefile client/gui-stub/Makefile client/luascript/Makefile server/Makefile server/advisors/Makefile server/generator/Makefile server/scripting/Makefile tools/Makefile tools/ruledit/Makefile tools/ruleutil/Makefile tools/shared/Makefile gen_headers/Makefile translations/Makefile translations/core/Makefile.in translations/nations/Makefile.in translations/ruledit/Makefile.in doc/Makefile doc/man/Makefile doc/man/freeciv.6 doc/man/freeciv-client.6 doc/man/freeciv-server.6 doc/man/freeciv-manual.6 doc/man/freeciv-modpack.6 doc/man/freeciv-ruledit.6 doc/man/freeciv-ruleup.6 doc/ca/Makefile doc/de/Makefile doc/fr/Makefile doc/it/Makefile doc/ja/Makefile doc/nl/Makefile doc/sv/Makefile bootstrap/Makefile lua/Makefile client/org.freeciv.gtk3.desktop:bootstrap/org.freeciv.gtk3.desktop.in client/org.freeciv.gtk2.desktop:bootstrap/org.freeciv.gtk2.desktop.in client/org.freeciv.gtk322.desktop:bootstrap/org.freeciv.gtk322.desktop.in client/org.freeciv.sdl2.desktop:bootstrap/org.freeciv.sdl2.desktop.in client/org.freeciv.qt.desktop:bootstrap/org.freeciv.qt.desktop.in server/org.freeciv.server.desktop:bootstrap/org.freeciv.server.desktop.in tools/org.freeciv.mp.gtk2.desktop:bootstrap/org.freeciv.mp.gtk2.desktop.in tools/org.freeciv.gtk322.mp.desktop:bootstrap/org.freeciv.gtk322.mp.desktop.in tools/org.freeciv.mp.gtk4.desktop:bootstrap/org.freeciv.mp.gtk4.desktop.in tools/org.freeciv.mp.qt.desktop:bootstrap/org.freeciv.mp.qt.desktop.in tools/ruledit/org.freeciv.ruledit.desktop:bootstrap/org.freeciv.ruledit.desktop.in"
- 
- ac_config_files="$ac_config_files fcgui:bootstrap/fcgui.in"
- 
-@@ -38664,7 +38664,7 @@ do
-     "client/org.freeciv.qt.desktop") CONFIG_FILES="$CONFIG_FILES client/org.freeciv.qt.desktop:bootstrap/org.freeciv.qt.desktop.in" ;;
-     "server/org.freeciv.server.desktop") CONFIG_FILES="$CONFIG_FILES server/org.freeciv.server.desktop:bootstrap/org.freeciv.server.desktop.in" ;;
-     "tools/org.freeciv.mp.gtk2.desktop") CONFIG_FILES="$CONFIG_FILES tools/org.freeciv.mp.gtk2.desktop:bootstrap/org.freeciv.mp.gtk2.desktop.in" ;;
--    "tools/org.freeciv.mp.gtk3.desktop") CONFIG_FILES="$CONFIG_FILES tools/org.freeciv.mp.gtk3.desktop:bootstrap/org.freeciv.mp.gtk3.desktop.in" ;;
-+    "tools/org.freeciv.gtk322.mp.desktop") CONFIG_FILES="$CONFIG_FILES tools/org.freeciv.gtk322.mp.desktop:bootstrap/org.freeciv.gtk322.mp.desktop.in" ;;
-     "tools/org.freeciv.mp.gtk4.desktop") CONFIG_FILES="$CONFIG_FILES tools/org.freeciv.mp.gtk4.desktop:bootstrap/org.freeciv.mp.gtk4.desktop.in" ;;
-     "tools/org.freeciv.mp.qt.desktop") CONFIG_FILES="$CONFIG_FILES tools/org.freeciv.mp.qt.desktop:bootstrap/org.freeciv.mp.qt.desktop.in" ;;
-     "tools/ruledit/org.freeciv.ruledit.desktop") CONFIG_FILES="$CONFIG_FILES tools/ruledit/org.freeciv.ruledit.desktop:bootstrap/org.freeciv.ruledit.desktop.in" ;;
-diff --git a/configure.ac b/configure.ac
-index cbf9e16844..5ca1af859c 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -1932,7 +1932,7 @@ AC_CONFIG_FILES([Makefile
-           client/org.freeciv.qt.desktop:bootstrap/org.freeciv.qt.desktop.in
- 	  server/org.freeciv.server.desktop:bootstrap/org.freeciv.server.desktop.in
- 	  tools/org.freeciv.mp.gtk2.desktop:bootstrap/org.freeciv.mp.gtk2.desktop.in
--	  tools/org.freeciv.mp.gtk3.desktop:bootstrap/org.freeciv.mp.gtk3.desktop.in
-+	  tools/org.freeciv.gtk322.mp.desktop:bootstrap/org.freeciv.gtk322.mp.desktop.in
- 	  tools/org.freeciv.mp.gtk4.desktop:bootstrap/org.freeciv.mp.gtk4.desktop.in
- 	  tools/org.freeciv.mp.qt.desktop:bootstrap/org.freeciv.mp.qt.desktop.in
- 	  tools/ruledit/org.freeciv.ruledit.desktop:bootstrap/org.freeciv.ruledit.desktop.in])
-diff --git a/flatpak/org.freeciv.mp.gtk3.yml b/flatpak/org.freeciv.gtk322.mp.yml
+diff --git a/bootstrap/org.freeciv.gtk3.mp.desktop b/bootstrap/org.freeciv.gtk322.mp.desktop
+similarity index 100%
+rename from bootstrap/org.freeciv.gtk3.mp.desktop
+rename to bootstrap/org.freeciv.gtk322.mp.desktop
+diff --git a/flatpak/build_flatpak.sh b/flatpak/build_flatpak.sh
+index bbc9746a23..93464ac1b5 100755
+--- a/flatpak/build_flatpak.sh
++++ b/flatpak/build_flatpak.sh
+@@ -24,7 +24,7 @@ fi
+ if ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.gtk4.yml ||
+    ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.gtk322.yml ||
+    ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.gtk4.mp.yml ||
+-   ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.gtk3.mp.yml ||
++   ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.gtk322.mp.yml ||
+    ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.qt.yml ||
+    ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.sdl2.yml ||
+    ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.ruledit.yml ||
+@@ -32,7 +32,7 @@ if ! flatpak-builder --user --repo=repo --force-clean build org.freeciv.gtk4.yml
+    ! flatpak build-bundle repo "freeciv-gtk4-${FCVER}.flatpak" org.freeciv.gtk4 ||
+    ! flatpak build-bundle repo "freeciv-gtk3.22-${FCVER}.flatpak" org.freeciv.gtk322 ||
+    ! flatpak build-bundle repo "freeciv-gtk4-mp-${FCVER}.flatpak" org.freeciv.gtk4.mp ||
+-   ! flatpak build-bundle repo "freeciv-gtk3-mp-${FCVER}.flatpak" org.freeciv.gtk3.mp ||
++   ! flatpak build-bundle repo "freeciv-gtk322-mp-${FCVER}.flatpak" org.freeciv.gtk322.mp ||
+    ! flatpak build-bundle repo "freeciv-qt-${FCVER}.flatpak" org.freeciv.qt ||
+    ! flatpak build-bundle repo "freeciv-sdl2-${FCVER}.flatpak" org.freeciv.sdl2 ||
+    ! flatpak build-bundle repo "freeciv-ruledit-${FCVER}.flatpak" org.freeciv.ruledit
+diff --git a/flatpak/org.freeciv.gtk3.mp.yml b/flatpak/org.freeciv.gtk322.mp.yml
 similarity index 94%
-rename from flatpak/org.freeciv.mp.gtk3.yml
+rename from flatpak/org.freeciv.gtk3.mp.yml
 rename to flatpak/org.freeciv.gtk322.mp.yml
-index f6eb7ee14f..8571a6c7a3 100644
---- a/flatpak/org.freeciv.mp.gtk3.yml
+index ae4983ab76..8571a6c7a3 100644
+--- a/flatpak/org.freeciv.gtk3.mp.yml
 +++ b/flatpak/org.freeciv.gtk322.mp.yml
 @@ -1,4 +1,4 @@
--app-id: org.freeciv.mp.gtk3
+-app-id: org.freeciv.gtk3.mp
 +app-id: org.freeciv.gtk322.mp
  runtime: org.freedesktop.Platform
  runtime-version: '23.08'
  sdk: org.freedesktop.Sdk
-diff --git a/tools/Makefile.am b/tools/Makefile.am
-index 3c59549597..6af0beaee3 100644
---- a/tools/Makefile.am
-+++ b/tools/Makefile.am
-@@ -65,7 +65,7 @@ desktopfile_DATA += org.freeciv.mp.gtk2.desktop
- endif
- 
- if MODINST_GTK3
--desktopfile_DATA += org.freeciv.mp.gtk3.desktop
-+desktopfile_DATA += org.freeciv.gtk322.mp.desktop
- endif
- 
- if MODINST_GTK4
 -- 
 2.40.1
 
